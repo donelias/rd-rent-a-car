@@ -54,6 +54,15 @@ class CreateReservationTest extends FeatureTestCase
     }
 
 
+    //verificar restriccion de acceso y redireccion al login
+    public function test_creating_a_reservation_requires_authentication()
+    {
+        //verificar si el usuario esta conectado
+        $this->visit(route('reservations.create'))
+            ->seePageIs(route('login'));
+    }
+
+
     private function noResrvation($cantidad=3, $longitud=10, $incluyeNum=true){
 
         $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
